@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { DataGrid, GridColDef, GridCellEditCommitParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridCellParams  } from '@mui/x-data-grid';
+// import GridCellEditCommitParamsApi from '@mui/x-data-grid';
+//import { GridRowModel } from '@mui/x-data-grid';
 import axios from 'axios';
 
 interface DataRow {
   id: number;
   name: string;
   age: number;
-  [key: string]: any;
+  //[key: string]: any;
 }
 
 const EditableTable: React.FC = () => {
@@ -18,14 +20,14 @@ const EditableTable: React.FC = () => {
         const data = response.data.map((item: any) => ({
           id: item.id,
           name: item.name,
-          age: item.age || 25, // Adding default age if not provided
+          age: item.age || 23, 
         }));
         setRows(data);
       })
       .catch((error) => console.error('Error fetching data: ', error));
   }, []);
 
-  const handleEditCellCommit = (params: GridCellEditCommitParams) => {
+  const handleEditCellCommit = (params: GridCellParams) => {    
     const updatedRows = rows.map((row) => {
       if (row.id === params.id) {
         return { ...row, [params.field]: params.value };
@@ -42,16 +44,24 @@ const EditableTable: React.FC = () => {
   ];
 
   return (
+
     <div style={{ height: 400, width: '100%' }}>
+    
       <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        onCellEditCommit={handleEditCellCommit}
-      />
-    </div>
+            rows={rows}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5]}
+            pagination
+            rowCount={rows.length}
+            onCellEditCommit={handleEditCellCommit}
+            // getRowId={(row: GridRowModel) => row.id.toString()}
+        />
+    
+      </div>
+  
   );
+       
 };
 
 export default EditableTable;

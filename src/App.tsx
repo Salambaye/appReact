@@ -1,6 +1,8 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemText, CssBaseline, Box } from '@mui/material';
+import { AppBar, Toolbar, Typography, Drawer, List, CssBaseline, Box } from '@mui/material';
 import EditableTable from './Components/EditableTable';
+import MenuItem from './Components/MenuItem';
+import { Home, Settings, Info } from '@mui/icons-material';
 
 const drawerWidth = 240;
 
@@ -20,25 +22,24 @@ const App: React.FC = () => {
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+          '& .MuiDrawer-paper': { width: drawerWidth, boxSizing: 'border-box' },
         }}
       >
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
           <List>
-            {['Menu 1', 'Menu 2', 'Menu 3', 'Menu 4'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
+            <MenuItem text="Accueil" icon={<Home />} onClick={() => console.log('Accueil')} />
+            <MenuItem text="Paramètres" icon={<Settings />} onClick={() => console.log('Paramètres')} />
+            <MenuItem text="À propos" icon={<Info />} onClick={() => console.log('À propos')} />
           </List>
         </Box>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}>
         <Toolbar />
         <Typography paragraph>
-          Contenu principal ici
+          Tableau de données éditables
         </Typography>
+        <EditableTable />
       </Box>
     </Box>
   );

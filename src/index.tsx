@@ -1,9 +1,9 @@
-import React from 'react';
+//import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-
-const theme = createTheme();
+import { ThemeProvider } from '@mui/material/styles';
+import './index.css'
+import theme from './theme';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
