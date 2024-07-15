@@ -9,3 +9,24 @@
     }
   ]
 }
+
+// {
+//   "compilerOptions": {
+//     "target": "ESNext",
+//     "module": "ESNext",
+//     "jsx": "react-jsx",
+//     "esModuleInterop": true,
+//     "strict": true,
+//     "moduleResolution": "node",
+//     "resolveJsonModule": true,
+//     "isolatedModules": true,
+//     "noEmit": true,
+//     "skipLibCheck": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "allowJs": true,
+//     "checkJs": false,
+//     "lib": ["ESNext", "DOM"]
+//   },
+//   "include": ["src"]
+// }
+
