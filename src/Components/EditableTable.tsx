@@ -56,6 +56,7 @@ const EditableTable: React.FC = () => {
 
   return (
     <div style={{ height: 400, width: '100%' }}>
+      <h1>Tableau éditable</h1>
       <DataGrid
         rows={rows}
         columns={columns}
