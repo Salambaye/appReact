@@ -1,5 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import App from './App';
+import {  Route, Routes } from 'react-router-dom';
 import About from './pages/About';
 import Settings from './pages/Setting';
 import { Home } from '@mui/icons-material';

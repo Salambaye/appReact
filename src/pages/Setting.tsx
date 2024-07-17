@@ -1,5 +1,5 @@
-import React from 'react';
-import { Grid, Typography, TextField, Button } from '@mui/material';
+
+import { Grid,  TextField, Button } from '@mui/material';
 
 const Settings = () => {
   return (
