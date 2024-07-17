@@ -1,5 +1,5 @@
-#appReact
-##Description
+# appReact
+## Description
 
 Ce projet est une application front-end développée en React et TypeScript. Elle utilise Vite pour le bundling, MUI (Material-UI) pour les composants de l'interface utilisateur, et Jest pour les tests unitaires. L'application est déployée sur Vercel.
 Technologies
