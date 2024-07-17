@@ -14,21 +14,15 @@ Ce projet est une application front-end développée en React et TypeScript. Ell
 
 ## Installation
 
-    Clonez le dépôt :
+Clonez le dépôt :
 
-    bash
-
-git clone https://github.com/Salambaye/appReact.git
+    git clone https://github.com/Salambaye/appReact.git
 
 Accédez au répertoire du projet :
-
-bash
-
-cd appReact
-
+    
+    cd appReact
+    
 Installez les dépendances :
-
-bash
 
     npm install
 
@@ -36,20 +30,16 @@ bash
 
 Pour lancer l'application en mode développement :
 
-bash
-
-npm run dev
+    npm run dev
 
 Pour lancer les tests unitaires :
 
-bash
-
-npm run test
+    npm run test
 
 ## Déploiement
 
-L'application est déployée sur Vercel. Vous pouvez y accéder via ce lien.
+L'application est déployée sur Vercel. Vous pouvez y accéder via ce lien: https://app-react-rho.vercel.app/.
 
-## Auteur
+## Auteure
 
     Salamata Nourou MBAYE - Étudiante en Master 1 en développement web et mobile à l'ESTIAM
