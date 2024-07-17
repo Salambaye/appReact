@@ -1,33 +1,55 @@
-# React + TypeScript + Vite
+#appReact
+##Description
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ce projet est une application front-end développée en React et TypeScript. Elle utilise Vite pour le bundling, MUI (Material-UI) pour les composants de l'interface utilisateur, et Jest pour les tests unitaires. L'application est déployée sur Vercel.
+Technologies
 
-Currently, two official plugins are available:
+    React : Bibliothèque JavaScript pour la construction d'interfaces utilisateur.
+    TypeScript : Superset de JavaScript qui ajoute des types statiques.
+    Vite : Outil de bundling rapide pour les projets front-end.
+    MUI (Material-UI) : Bibliothèque de composants React implémentant les principes de Material Design.
+    Jest : Cadre de test JavaScript.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Installation
 
-## Expanding the ESLint configuration
+    Clonez le dépôt :
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+    bash
 
-- Configure the top-level `parserOptions` property like this:
+git clone https://github.com/Salambaye/appReact.git
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+Accédez au répertoire du projet :
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-=======
-# appReact
->>>>>>> d5447f5af1bfff023ffe140ef9c556f0285170cc
+bash
+
+cd appReact
+
+Installez les dépendances :
+
+bash
+
+    npm install
+
+Utilisation
+
+Pour lancer l'application en mode développement :
+
+bash
+
+npm run dev
+
+Pour lancer les tests unitaires :
+
+bash
+
+npm run test
+
+Déploiement
+
+L'application est déployée sur Vercel. Vous pouvez y accéder via ce lien.
+Contribuer
+
+Les contributions sont les bienvenues. Pour proposer des modifications, veuillez ouvrir une issue ou soumettre une pull request.
+Auteur
+
+    Salamata Nourou MBAYE - Étudiante en Master 1 en développement web et mobile à l'ESTIAM
