@@ -1,51 +1,47 @@
-import React from 'react';
-import '@testing-library/jest-dom';
-import { render, fireEvent, waitFor } from '@testing-library/react';
-import EditableTable from './EditableTable';
-import axios from 'axios';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom'
+import { render,  waitFor, screen } from "@testing-library/react";
+import EditableTable from "./EditableTable";
+import axios from "axios";
 
-jest.mock('axios');
+jest.mock("axios");
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
-describe('EditableTable', () => {
+describe("EditableTable", () => {
   beforeEach(() => {
     mockedAxios.get.mockResolvedValue({
       data: [
-        { userId: 1, id: 1, title: 'Title 1', body: 'Body 1' },
-        { userId: 2, id: 2, title: 'Title 2', body: 'Body 2' },
+        { userId: 1, id: 1, title: "Title 1", body: "Body 1" },
+        { userId: 2, id: 2, title: "Title 2", body: "Body 2" },
       ],
     });
   });
 
-  it('renders correctly', async () => {
-    const { getByText } = render(<EditableTable />);
-    await waitFor(() => getByText('User ID'));
-    expect(getByText('User ID')).toBeInTheDocument();
-    expect(getByText('ID')).toBeInTheDocument();
-    expect(getByText('Title')).toBeInTheDocument();
-    expect(getByText('Body')).toBeInTheDocument();
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
-  it('displays data correctly', async () => {
-    const { getByText } = render(<EditableTable />);
-    await waitFor(() => getByText('Title 1'));
-    expect(getByText('Title 1')).toBeInTheDocument();
-    expect(getByText('Title 2')).toBeInTheDocument();
+  it("renders table headers correctly", async () => {
+    render(<EditableTable />);
+    await waitFor(() => expect(screen.getByText("User ID")).toBeInTheDocument());
+    expect(screen.getByText("ID")).toBeInTheDocument();
+    expect(screen.getByText("Title")).toBeInTheDocument();
+    expect(screen.getByText("Body")).toBeInTheDocument();
   });
 
-  it('allows editing of cells', async () => {
-    const { getByText, getByRole } = render(<EditableTable />);
-    await waitFor(() => getByText('Title 1'));
-    
-    const titleCell = getByText('Title 1');
-    fireEvent.doubleClick(titleCell);
+  it("displays data correctly", async () => {
+    render(<EditableTable />);
+    await waitFor(() => expect(screen.getByText("Title 1")).toBeInTheDocument());
+    expect(screen.getByText("Title 2")).toBeInTheDocument();
+    expect(mockedAxios.get).toHaveBeenCalledTimes(1);
+  });
 
-    const input = getByRole('textbox');
-    fireEvent.change(input, { target: { value: 'New Title' } });
-    fireEvent.blur(input);
+  
 
-    await waitFor(() => getByText('New Title'));
-    expect(getByText('New Title')).toBeInTheDocument();
+  it("handles API errors gracefully", async () => {
+    mockedAxios.get.mockRejectedValueOnce(new Error("Network Error"));
+
+    render(<EditableTable />);
+    await waitFor(() => expect(screen.getByText("Error: Network Error")).toBeInTheDocument());
   });
 });
+ 

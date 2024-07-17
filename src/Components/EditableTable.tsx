@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { DataGrid, GridColDef, GridCellParams  } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridRowModel  } from '@mui/x-data-grid';
 import useApi from '../hooks/useApi';
 
 interface DataRow {
@@ -23,28 +23,25 @@ const EditableTable: React.FC = () => {
     }
   }, [data]);
 
-  // const handleEditCellCommit = (params: GridCellParams) => {
-  //   const updatedRows = rows.map((row) =>
-  //     row.id === params.id ? { ...row, [params.field]: params.value } : row
-  //   );
-  //   setRows(updatedRows);
-  // };
-
-  const handleEditCellCommit= (params: GridCellParams) => {
-    const { id, field, value } = params;
-    setRows((prevRows) =>
-      prevRows.map((row) =>
-        row.id === id ? { ...row, [field]: value } : row
-      )
-    );
-  };
-
   const columns: GridColDef[] = [
-    { field: 'userId', headerName: 'User ID', width: 90 },
-    { field: 'id', headerName: 'ID', width: 90 },
+    { field: 'userId', headerName: 'User ID', width: 90, editable: true  },
+    { field: 'id', headerName: 'ID', width: 90, editable: true  },
     { field: 'title', headerName: 'Title', width: 250, editable: true },
     { field: 'body', headerName: 'Body', width: 400, editable: true },
   ];
+
+
+
+  const handleProcessRowUpdate = (newRow: GridRowModel, oldRow: GridRowModel) => {
+    const updatedRow = { ...oldRow, ...newRow } as DataRow;
+    setRows(rows.map(row => (row.id === oldRow.id ? updatedRow : row)));
+    return updatedRow;
+  };
+
+  const handleProcessRowUpdateError = (error: Error) => {
+    console.error(error);
+  };
+
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -61,8 +58,8 @@ const EditableTable: React.FC = () => {
         rows={rows}
         columns={columns}
         pagination
-        rowCount={rows.length}
-        onCellEditCommit={handleEditCellCommit}
+        processRowUpdate={handleProcessRowUpdate}
+        onProcessRowUpdateError={handleProcessRowUpdateError}
       />
     </div>
   );
